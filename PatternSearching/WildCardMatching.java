@@ -1,4 +1,3 @@
-
 public class WildCardMatching {
 
 	public boolean isMatching(String s, String t){
@@ -13,8 +12,7 @@ public class WildCardMatching {
 				if(isFirst){
 					pattern[wildCount++] = pattern[i];
 					isFirst = false;
-				}
-				else{
+				}else{
 					pattern[wildCount++] = pattern[i];
 					isFirst = true;
 				}
@@ -23,12 +21,10 @@ public class WildCardMatching {
 			
 		}
 		
-		
 		boolean T[][] = new boolean[str.length+1][wildCount+1];
 		if(wildCount > 0 && pattern[0] == '*'){
 			T[0][1] = true;
 		}
-		
 		
 		T[0][0] = true;
 		
@@ -36,17 +32,14 @@ public class WildCardMatching {
 			for(int k = 1; k < T[0].length; k++){
 				if(pattern[k-1] == '?' || str[j-1] == pattern[k-1]){
 					T[j][k] = T[j-1][k-1];
-				}
-				else if(pattern[k-1] == '*'){
+				}	else if(pattern[k-1] == '*'){
 					T[j][k] = T[j-1][k]||T[j][k-1];
 				}
 				
 			}
 			
 		}
-		
 		return T[str.length][wildCount];
-		
 	}
 	
 	
